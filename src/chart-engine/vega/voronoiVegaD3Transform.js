@@ -1,13 +1,13 @@
 import {Transform} from 'vega-dataflow';
 import {inherits} from 'vega-util';
-import {sankey} from 'd3-sankey';
+import {voronoi} from 'd3-voronoi';
 
-export default function Sankey(params) {
+export default function Voronoi(params) {
   Transform.call(this, null, params);
 }
 
-Sankey.Definition = {
-  "type": "Sankey",
+Voronoi.Definition = {
+  "type": "Voronoi",
   "metadata": {"modifies": true},
   "params": [
     { "name": "x", "type": "field", "required": true },
@@ -20,7 +20,7 @@ Sankey.Definition = {
   ]
 };
 
-var prototype = inherits(Sankey, Transform);
+var prototype = inherits(Voronoi, Transform);
 
 var defaultExtent = [[-1e5, -1e5], [1e5, 1e5]];
 
@@ -29,8 +29,8 @@ prototype.transform = function(_, pulse) {
       data = pulse.source,
       diagram, polygons, i, n;
 
-  // configure and construct sankey diagram
-  diagram = sankey().x(_.x).y(_.y);
+  // configure and construct voronoi diagram
+  diagram = voronoi().x(_.x).y(_.y);
   if (_.size) diagram.size(_.size);
   else diagram.extent(_.extent || defaultExtent);
 
