@@ -1,8 +1,31 @@
 <script setup lang="ts">
+import * as d3 from "d3";
+import { SankeyChart } from './chart-engine/d3/sankeyD3Loader.js';
+
+import sankeySampleData from './assets/chart-data/sankey-sample-data.json';
+
 import HelloWorld from './components/HelloWorld.vue'
+import { onMounted } from "vue";
+
+let chart = SankeyChart({
+  links: sankeySampleData
+}, {
+  nodeGroup: d => d.id.split(/\W/)[0], // take first word for color
+  nodeAlign: "justify", // e.g., d3.sankeyJustify; set by input above
+  linkColor: "source-target", // e.g., "source" or "target"; set by input above
+  format: (f => d => `${f(d)} TWh`)(d3.format(",.1~f")),
+  width: 1000,
+  height: 600
+});
+
+onMounted(() => {
+  document.getElementById("viewPort")?.insertBefore(chart, null);
+});
+
 </script>
 
 <template>
+  <div id="viewPort"/>
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
