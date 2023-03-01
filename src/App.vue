@@ -5,7 +5,7 @@ import { SankeyChart } from './chart-engine/d3/sankeyD3Loader.js';
 import sankeySampleData from './assets/chart-data/sankey-sample-data.json';
 
 import HelloWorld from './components/HelloWorld.vue'
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 let chart = SankeyChart({
   links: sankeySampleData
@@ -18,14 +18,16 @@ let chart = SankeyChart({
   height: 600
 });
 
+const chartContainer = ref();
+
 onMounted(() => {
-  document.getElementById("viewPort")?.insertBefore(chart, null);
+  chartContainer.value?.insertBefore(chart, null);
 });
 
 </script>
 
 <template>
-  <div id="viewPort"/>
+  <div ref="chartContainer" />
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
@@ -44,9 +46,11 @@ onMounted(() => {
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
