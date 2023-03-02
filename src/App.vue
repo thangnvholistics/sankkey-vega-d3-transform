@@ -25,20 +25,27 @@ const chartContainer = ref();
 onMounted(() => {
   chartContainer.value?.insertBefore(chart, null);
 
-  let view = new vega.View(vega.parse(voronoiChartData), {
+  let sankeyView = new vega.View(vega.parse(voronoiChartData), {
     renderer: 'svg',  // renderer (canvas or svg)
-    container: '#vegaContainer',   // parent DOM container
+    container: '#sankeyContainer',   // parent DOM container
     hover: true       // enable hover processing
   });
+  sankeyView.runAsync();
 
-  view.runAsync();
+  let voronoiView = new vega.View(vega.parse(voronoiChartData), {
+    renderer: 'svg',  // renderer (canvas or svg)
+    container: '#voronoiContainer',   // parent DOM container
+    hover: true       // enable hover processing
+  });
+  voronoiView.runAsync();
 });
 
 </script>
 
 <template>
   <div ref="chartContainer" />
-  <div id="vegaContainer" />
+  <div id="sankeyContainer" />
+  <div id="voronoiContainer" />
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
