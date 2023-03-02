@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import * as d3 from "d3";
+import { vega } from './chart-engine/vega/vegaLoader.js';
 import { SankeyChart } from './chart-engine/d3/sankeyD3Loader.js';
 
 import sankeySampleData from './assets/chart-data/sankey-sample-data.json';
+import voronoiChartData from './assets/chart-data/voronoi.vg.json'
 
 import HelloWorld from './components/HelloWorld.vue'
 import { onMounted, ref } from "vue";
@@ -22,12 +24,21 @@ const chartContainer = ref();
 
 onMounted(() => {
   chartContainer.value?.insertBefore(chart, null);
+
+  let view = new vega.View(vega.parse(voronoiChartData), {
+    renderer: 'svg',  // renderer (canvas or svg)
+    container: '#vegaContainer',   // parent DOM container
+    hover: true       // enable hover processing
+  });
+
+  view.runAsync();
 });
 
 </script>
 
 <template>
   <div ref="chartContainer" />
+  <div id="vegaContainer" />
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
