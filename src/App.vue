@@ -4,9 +4,10 @@ import { vega } from './chart-engine/vega/vegaLoader.js';
 import { SankeyChart } from './chart-engine/d3/sankeyD3Loader.js';
 
 import sankeySampleData from './assets/chart-data/sankey-sample-data.json';
-import voronoiChartData from './assets/chart-data/voronoi.vg.json'
+import sankeyChartData from './assets/chart-data/sankey.vg.json';
+import voronoiChartData from './assets/chart-data/voronoi.vg.json';
 
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue';
 import { onMounted, ref } from "vue";
 
 let chart = SankeyChart({
@@ -25,7 +26,7 @@ const chartContainer = ref();
 onMounted(() => {
   chartContainer.value?.insertBefore(chart, null);
 
-  let sankeyView = new vega.View(vega.parse(voronoiChartData), {
+  let sankeyView = new vega.View(vega.parse(sankeyChartData), {
     renderer: 'svg',  // renderer (canvas or svg)
     container: '#sankeyContainer',   // parent DOM container
     hover: true       // enable hover processing

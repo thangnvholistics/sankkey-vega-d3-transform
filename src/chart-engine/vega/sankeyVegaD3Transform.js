@@ -14,15 +14,9 @@ Sankey.Definition = {
   "type": "Sankey",
   "metadata": { "modifies": true },
   "params": [
-    { "name": "x", "type": "field", "required": true },
-    { "name": "y", "type": "field", "required": true },
-    { "name": "size", "type": "number", "array": true, "length": 2 },
-    {
-      "name": "extent", "type": "array", "array": true, "length": 2,
-      "default": [[-1e5, -1e5], [1e5, 1e5]],
-      "content": { "type": "number", "array": true, "length": 2 }
-    },
-    { "name": "as", "type": "string", "default": "path" }
+    { "name": "source", "type": "field", "required": true },
+    { "name": "target", "type": "field", "required": true },
+    { "name": "volume", "type": "field", "required": true },
   ]
 };
 
@@ -31,26 +25,31 @@ var prototype = inherits(Sankey, Transform);
 var defaultExtent = [[-1e5, -1e5], [1e5, 1e5]];
 
 prototype.transform = function (_, pulse) {
-  var as = _.as || 'path',
-    data = pulse.source,
-    diagram, polygons, i, n;
+  console.log(_);
+  console.log(pulse);
+  debugger;
 
-  // configure and construct sankey diagram
-  diagram = sankey().x(_.x).y(_.y);
-  if (_.size) diagram.size(_.size);
-  else diagram.extent(_.extent || defaultExtent);
+  
+  // var as = _.as || 'path',
+  //   data = pulse.source,
+  //   diagram, polygons, i, n;
 
-  this.value = (diagram = diagram(data));
+  // // configure and construct sankey diagram
+  // diagram = sankey().x(_.x).y(_.y);
+  // if (_.size) diagram.size(_.size);
+  // else diagram.extent(_.extent || defaultExtent);
 
-  // map polygons to paths
-  polygons = diagram.polygons();
-  for (i = 0, n = data.length; i < n; ++i) {
-    data[i][as] = polygons[i]
-      ? 'M' + polygons[i].join('L') + 'Z'
-      : null;
-  }
+  // this.value = (diagram = diagram(data));
 
-  return pulse.reflow(_.modified()).modifies(as);
+  // // map polygons to paths
+  // polygons = diagram.polygons();
+  // for (i = 0, n = data.length; i < n; ++i) {
+  //   data[i][as] = polygons[i]
+  //     ? 'M' + polygons[i].join('L') + 'Z'
+  //     : null;
+  // }
+
+  // return pulse.reflow(_.modified()).modifies(as);
 };
 
 export { Sankey }

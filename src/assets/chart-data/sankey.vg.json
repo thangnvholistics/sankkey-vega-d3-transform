@@ -348,6 +348,18 @@
           "value": 289.366
         }
       ]
+    },
+    {
+      "name": "links",
+      "source": "table",
+      "transform": [
+        {
+          "type": "sankey",
+          "source": "datum.source",
+          "target": "datum.target",
+          "volume": "datum.volumn"
+        }
+      ]
     }
   ],
   "scales": [
@@ -410,22 +422,7 @@
             "value": "transparent"
           }
         }
-      },
-      "transform": [
-        {
-          "type": "voronoi",
-          "x": "datum.x",
-          "y": "datum.y",
-          "size": [
-            {
-              "signal": "width"
-            },
-            {
-              "signal": "height"
-            }
-          ]
-        }
-      ]
+      }
     }
   ]
 }
