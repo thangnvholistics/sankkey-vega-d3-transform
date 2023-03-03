@@ -27,9 +27,25 @@ var defaultExtent = [[-1e5, -1e5], [1e5, 1e5]];
 prototype.transform = function (_, pulse) {
   console.log(_);
   console.log(pulse);
-  debugger;
 
-  
+  const data = pulse.source;
+
+  let sourceNodes;
+  let targetNodes;
+  let sankeyLinks;
+
+  if (_.source.fname.includes("datum.") || _.target.fname.includes("datum.")) {
+    const datumTable = data && data.map(x => ({ datum: x }));
+    sourceNodes = datumTable.map(_.source);
+    targetNodes = datumTable.map(_.target);
+    sankeyLinks = datumTable.map(x => ({ source: _.source(x), target: _.target(x), value: _.volume(x) }));
+  } else {
+    sourceNodes = data.map(_.source);
+    targetNodes = data.map(_.target);
+    sankeyLinks = data.map(x => ({ source: _.source(x), target: _.target(x), value: _.volume(x) }));
+  }
+
+  debugger;
   // var as = _.as || 'path',
   //   data = pulse.source,
   //   diagram, polygons, i, n;

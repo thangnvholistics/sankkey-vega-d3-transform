@@ -357,7 +357,7 @@
           "type": "sankey",
           "source": "datum.source",
           "target": "datum.target",
-          "volume": "datum.volumn"
+          "volume": "datum.value"
         }
       ]
     }
