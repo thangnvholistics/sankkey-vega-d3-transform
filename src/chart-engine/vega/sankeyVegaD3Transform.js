@@ -1,6 +1,6 @@
 import { Transform } from 'vega-dataflow';
 import { inherits } from 'vega-util';
-import { sankey } from 'd3-sankey';
+import * as d3Sankey from "d3-sankey";
 
 // export default function Sankey(params) {
 //   Transform.call(this, null, params);
@@ -44,6 +44,49 @@ prototype.transform = function (_, pulse) {
     targetNodes = data.map(_.target);
     sankeyLinks = data.map(x => ({ source: _.source(x), target: _.target(x), value: _.volume(x) }));
   }
+
+  sourceNodes = sourceNodes.map(x => x ? x.trim().replace(/\s+/g, ' ') : x);
+  targetNodes = targetNodes.map(x => x ? x.trim().replace(/\s+/g, ' ') : x);
+  sankeyLinks.forEach(x => {
+    x && x.source && x.source.trim().replace(/\s+/g, ' ');
+    x && x.target && x.target.trim().replace(/\s+/g, ' ');
+  });
+
+  let uniqueNodes = [];
+  (() => {
+    let uniqueSet = [];
+    let xLower;
+    sourceNodes.forEach(x => {
+      x
+        && (xLower = x.toLowerCase()) && !uniqueSet.includes(xLower)
+        && uniqueSet.push(xLower) && uniqueNodes.push({ id: x });
+    });
+    targetNodes.forEach(x => {
+      x
+        && (xLower = x.toLowerCase()) && !uniqueSet.includes(xLower)
+        && uniqueSet.push(xLower) && uniqueNodes.push({ id: x });
+    });
+  })();
+
+  let nodeAlign = "justify"; // Sankey node alignment strategy: left, right, justify, center
+  let nodeWidth = 15; // width of node rects
+  let nodePadding = 10; // vertical separation between adjacent nodes
+
+  let marginTop = 5; // top margin, in pixels
+  let marginRight = 1; // right margin, in pixels
+  let marginBottom = 5; // bottom margin, in pixels
+  let marginLeft = 1; // left margin, in pixels
+
+  let width = 640; // outer width, in pixels
+  let height = 400; // outer height, in pixels
+
+  d3Sankey.sankey()
+    .nodeId(({ index: i }) => N[i])
+    .nodeAlign(nodeAlign)
+    .nodeWidth(nodeWidth)
+    .nodePadding(nodePadding)
+    .extent([[marginLeft, marginTop], [width - marginRight, height - marginBottom]])
+    ({ uniqueNodes, sankeyLinks });
 
   debugger;
   // var as = _.as || 'path',
