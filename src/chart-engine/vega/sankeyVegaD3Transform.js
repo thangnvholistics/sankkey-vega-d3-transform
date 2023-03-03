@@ -80,13 +80,22 @@ prototype.transform = function (_, pulse) {
   let width = 640; // outer width, in pixels
   let height = 400; // outer height, in pixels
 
+  debugger;
+
+  // Convert nodeAlign from a name to a function (since d3-sankey is not part of core d3).
+  if (typeof nodeAlign !== "function") nodeAlign = {
+    left: d3Sankey.sankeyLeft,
+    right: d3Sankey.sankeyRight,
+    center: d3Sankey.sankeyCenter
+  }[nodeAlign] ?? d3Sankey.sankeyJustify;
+
   d3Sankey.sankey()
-    .nodeId(({ index: i }) => N[i])
+    .nodeId(({ index: i }) => uniqueNodes[i].id)
     .nodeAlign(nodeAlign)
     .nodeWidth(nodeWidth)
     .nodePadding(nodePadding)
     .extent([[marginLeft, marginTop], [width - marginRight, height - marginBottom]])
-    ({ uniqueNodes, sankeyLinks });
+    ({ nodes: uniqueNodes, links: sankeyLinks });
 
   debugger;
   // var as = _.as || 'path',
