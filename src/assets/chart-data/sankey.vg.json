@@ -364,20 +364,22 @@
   ],
   "scales": [
     {
-      "name": "xscale",
-      "domain": [
-        0,
-        1
-      ],
-      "range": "width"
+      "name": "x",
+      "type": "linear",
+      "range": "width",
+      "domain": {
+        "data": "nodes",
+        "field": "x1"
+      }
     },
     {
-      "name": "yscale",
-      "domain": [
-        0,
-        1
-      ],
-      "range": "height"
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "domain": {
+        "data": "nodes",
+        "field": "y1"
+      }
     }
   ],
   "marks": [
