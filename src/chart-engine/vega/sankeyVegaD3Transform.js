@@ -20,9 +20,11 @@ Sankey.Definition = {
   ]
 };
 
-var prototype = inherits(Sankey, Transform);
+const output = ["index", "source", "target", "value", "width", "y0", "y1"];
 
-var defaultExtent = [[-1e5, -1e5], [1e5, 1e5]];
+const prototype = inherits(Sankey, Transform);
+
+const defaultExtent = [[-1e5, -1e5], [1e5, 1e5]];
 
 prototype.transform = function (_, pulse) {
   console.log(_);
@@ -80,8 +82,6 @@ prototype.transform = function (_, pulse) {
   let width = 640; // outer width, in pixels
   let height = 400; // outer height, in pixels
 
-  debugger;
-
   // Convert nodeAlign from a name to a function (since d3-sankey is not part of core d3).
   if (typeof nodeAlign !== "function") nodeAlign = {
     left: d3Sankey.sankeyLeft,
@@ -97,7 +97,21 @@ prototype.transform = function (_, pulse) {
     .extent([[marginLeft, marginTop], [width - marginRight, height - marginBottom]])
     ({ nodes: uniqueNodes, links: sankeyLinks });
 
+  for (let i = 0; i < data.length; ++i) {
+    let originalItem = data[i];
+    let sankeyLink = sankeyLinks[i];
+    originalItem[output[0]] = sankeyLink["index"];
+    originalItem[output[1]] = sankeyLink["source"];
+    originalItem[output[2]] = sankeyLink["target"];
+    originalItem[output[3]] = sankeyLink["value"];
+    originalItem[output[4]] = sankeyLink["width"];
+    originalItem[output[5]] = sankeyLink["y0"];
+    originalItem[output[6]] = sankeyLink["y1"];
+  }
+
   debugger;
+
+  return pulse.reflow(_.modified()).modifies(output);
   // var as = _.as || 'path',
   //   data = pulse.source,
   //   diagram, polygons, i, n;

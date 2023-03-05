@@ -26,6 +26,13 @@ const chartContainer = ref();
 onMounted(() => {
   chartContainer.value?.insertBefore(chart, null);
 
+  let voronoiView = new vega.View(vega.parse(voronoiChartData), {
+    renderer: 'svg',  // renderer (canvas or svg)
+    container: '#voronoiContainer',   // parent DOM container
+    hover: true       // enable hover processing
+  });
+  voronoiView.runAsync();
+
   let sankeyView = new vega.View(vega.parse(sankeyChartData), {
     renderer: 'svg',  // renderer (canvas or svg)
     container: '#sankeyContainer',   // parent DOM container
@@ -33,12 +40,6 @@ onMounted(() => {
   });
   sankeyView.runAsync();
 
-  let voronoiView = new vega.View(vega.parse(voronoiChartData), {
-    renderer: 'svg',  // renderer (canvas or svg)
-    container: '#voronoiContainer',   // parent DOM container
-    hover: true       // enable hover processing
-  });
-  voronoiView.runAsync();
 });
 
 </script>
