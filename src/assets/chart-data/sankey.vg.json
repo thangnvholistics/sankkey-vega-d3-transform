@@ -362,7 +362,7 @@
       ]
     },
     {
-      "name": "edges",
+      "name": "links",
       "source": "nodesAndLinks",
       "transform": [
         {
@@ -387,8 +387,24 @@
           "type": "formula",
           "expr": "datum.width",
           "as": "strokeWidth"
+        },
+        {
+          "type": "formula",
+          "expr": "datum.source.id",
+          "as": "nodeId"
         }
       ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {
+        "data": "links",
+        "field": "nodeId"
+      }
     }
   ],
   "marks": [
@@ -396,17 +412,23 @@
       "type": "path",
       "name": "edgeMark",
       "from": {
-        "data": "edges"
+        "data": "links"
       },
       "clip": true,
       "encode": {
         "update": {
+          "path": {
+            "field": "path123"
+          },
           "strokeWidth": {
             "field": "strokeWidth"
           },
-          "path": {
-            "field": "path123"
-          }
+          "stroke": [
+            {
+              "scale": "color",
+              "field": "nodeId"
+            }
+          ]
         },
         "hover": {
           "strokeOpacity": {
