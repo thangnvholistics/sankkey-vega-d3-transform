@@ -463,23 +463,23 @@
     },
     {
       "type": "rect",
-      "name": "sourceMark",
+      "name": "targetMark",
       "from": {
         "data": "nodes"
       },
       "encode": {
         "update": {
           "x": {
-            "field": "source.x0"
+            "field": "target.x0"
           },
           "x2": {
-            "field": "source.x1"
+            "field": "target.x1"
           },
           "y": {
-            "field": "source.y0"
+            "field": "target.y0"
           },
           "y2": {
-            "field": "source.y1"
+            "field": "target.y1"
           },
           "fill": [
             {
@@ -503,23 +503,23 @@
     },
     {
       "type": "rect",
-      "name": "targetMark",
+      "name": "sourceMark",
       "from": {
         "data": "nodes"
       },
       "encode": {
         "update": {
           "x": {
-            "field": "target.x0"
+            "field": "source.x0"
           },
           "x2": {
-            "field": "target.x1"
+            "field": "source.x1"
           },
           "y": {
-            "field": "target.y0"
+            "field": "source.y0"
           },
           "y2": {
-            "field": "target.y1"
+            "field": "source.y1"
           },
           "fill": [
             {
