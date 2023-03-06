@@ -449,7 +449,10 @@
               "scale": "color",
               "field": "sourceId"
             }
-          ]
+          ],
+          "strokeOpacity": {
+            "value": 0.6
+          }
         },
         "hover": {
           "strokeOpacity": {
@@ -483,7 +486,13 @@
               "scale": "color",
               "field": "sourceId"
             }
-          ]
+          ],
+          "stroke": {
+            "value": "#000"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
         }
       }
     }
