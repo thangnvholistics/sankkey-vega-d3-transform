@@ -463,7 +463,7 @@
     },
     {
       "type": "rect",
-      "name": "nodeMark",
+      "name": "sourceMark",
       "from": {
         "data": "nodes"
       },
@@ -492,6 +492,51 @@
           },
           "strokeWidth": {
             "value": 0.5
+          }
+        },
+        "hover": {
+          "strokeWidth": {
+            "value": 2
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "name": "targetMark",
+      "from": {
+        "data": "nodes"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "field": "target.x0"
+          },
+          "x2": {
+            "field": "target.x1"
+          },
+          "y": {
+            "field": "target.y0"
+          },
+          "y2": {
+            "field": "target.y1"
+          },
+          "fill": [
+            {
+              "scale": "color",
+              "field": "sourceId"
+            }
+          ],
+          "stroke": {
+            "value": "#000"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        },
+        "hover": {
+          "strokeWidth": {
+            "value": 2
           }
         }
       }
