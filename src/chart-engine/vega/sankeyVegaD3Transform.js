@@ -79,8 +79,8 @@ prototype.transform = function (_, pulse) {
   let marginBottom = 5; // bottom margin, in pixels
   let marginLeft = 1; // left margin, in pixels
 
-  let width = 640; // outer width, in pixels
-  let height = 400; // outer height, in pixels
+  let width = 1000; // outer width, in pixels
+  let height = 600; // outer height, in pixels
 
   // Convert nodeAlign from a name to a function (since d3-sankey is not part of core d3).
   if (typeof nodeAlign !== "function") nodeAlign = {
@@ -108,8 +108,6 @@ prototype.transform = function (_, pulse) {
     originalItem[output[5]] = sankeyLink["y0"];
     originalItem[output[6]] = sankeyLink["y1"];
   }
-
-  debugger;
 
   return pulse.reflow(_.modified()).modifies(output);
   // var as = _.as || 'path',
