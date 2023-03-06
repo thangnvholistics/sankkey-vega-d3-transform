@@ -350,7 +350,7 @@
       ]
     },
     {
-      "name": "links",
+      "name": "nodesAndLinks",
       "source": "table",
       "transform": [
         {
@@ -360,68 +360,49 @@
           "volume": "datum.value"
         }
       ]
-    }
-  ],
-  "scales": [
-    {
-      "name": "x",
-      "type": "linear",
-      "range": "width",
-      "domain": {
-        "data": "nodes",
-        "field": "x1"
-      }
     },
     {
-      "name": "y",
-      "type": "linear",
-      "range": "height",
-      "domain": {
-        "data": "nodes",
-        "field": "y1"
-      }
+      "name": "edges",
+      "source": "nodesAndLinks",
+      "transform": [
+        {
+          "type": "linkpath",
+          "orient": "horizontal",
+          "shape": "diagonal",
+          "sourceY": {
+            "expr": "scale('y', datum.yc)"
+          },
+          "sourceX": {
+            "expr": "scale('x', 'stk1') + bandwidth('x')"
+          },
+          "targetY": {
+            "expr": "scale('y', datum.target1.yc)"
+          },
+          "targetX": {
+            "expr": "scale('x', 'stk2')"
+          },
+          "as": "path123"
+        }
+      ]
     }
   ],
   "marks": [
     {
-      "name": "points",
-      "type": "symbol",
-      "zindex": 1,
-      "from": {
-        "data": "table"
-      },
-      "interactive": false,
-      "encode": {
-        "enter": {
-          "fill": {
-            "value": "black"
-          },
-          "size": {
-            "value": 36
-          },
-          "x": {
-            "scale": "xscale",
-            "field": "u"
-          },
-          "y": {
-            "scale": "yscale",
-            "field": "v"
-          }
-        }
-      }
-    },
-    {
       "type": "path",
+      "name": "edgeMark",
       "from": {
-        "data": "points"
+        "data": "edges"
       },
+      "clip": true,
       "encode": {
-        "enter": {
-          "stroke": {
-            "value": "firebrick"
-          },
-          "fill": {
-            "value": "transparent"
+        "update": {
+          "path": {
+            "field": "path123"
+          }
+        },
+        "hover": {
+          "strokeOpacity": {
+            "value": 1
           }
         }
       }
