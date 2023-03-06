@@ -370,13 +370,13 @@
           "orient": "horizontal",
           "shape": "diagonal",
           "sourceY": {
-            "expr": "(datum.source.y0 + datum.source.y1) / 2"
+            "expr": "datum.y0"
           },
           "sourceX": {
             "expr": "datum.source.x1"
           },
           "targetY": {
-            "expr": "(datum.target.y0 + datum.target.y1) / 2"
+            "expr": "datum.y1"
           },
           "targetX": {
             "expr": "datum.target.x0"
