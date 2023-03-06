@@ -382,6 +382,11 @@
             "expr": "datum.target.x0"
           },
           "as": "path123"
+        },
+        {
+          "type": "formula",
+          "expr": "datum.width",
+          "as": "strokeWidth"
         }
       ]
     }
@@ -396,6 +401,9 @@
       "clip": true,
       "encode": {
         "update": {
+          "strokeWidth": {
+            "field": "strokeWidth"
+          },
           "path": {
             "field": "path123"
           }
