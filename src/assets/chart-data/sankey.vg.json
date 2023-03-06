@@ -376,7 +376,7 @@
             "expr": "scale('x', 'stk1') + bandwidth('x')"
           },
           "targetY": {
-            "expr": "scale('y', datum.target1.yc)"
+            "expr": "scale('y', datum.target.yc)"
           },
           "targetX": {
             "expr": "scale('x', 'stk2')"
