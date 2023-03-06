@@ -370,16 +370,16 @@
           "orient": "horizontal",
           "shape": "diagonal",
           "sourceY": {
-            "expr": "scale('y', datum.yc)"
+            "expr": "datum.y0"
           },
           "sourceX": {
-            "expr": "scale('x', 'stk1') + bandwidth('x')"
+            "expr": "datum.y1"
           },
           "targetY": {
-            "expr": "scale('y', datum.target.yc)"
+            "expr": "datum.y1"
           },
           "targetX": {
-            "expr": "scale('x', 'stk2')"
+            "expr": "datum.y0"
           },
           "as": "path123"
         }
