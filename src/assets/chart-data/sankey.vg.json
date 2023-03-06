@@ -370,16 +370,16 @@
           "orient": "horizontal",
           "shape": "diagonal",
           "sourceY": {
-            "expr": "datum.y0"
+            "expr": "(datum.source.y0 + datum.source.y1) / 2"
           },
           "sourceX": {
-            "expr": "datum.y1"
+            "expr": "datum.source.x1"
           },
           "targetY": {
-            "expr": "datum.y1"
+            "expr": "(datum.target.y0 + datum.target.y1) / 2"
           },
           "targetX": {
-            "expr": "datum.y0"
+            "expr": "datum.target.x0"
           },
           "as": "path123"
         }
