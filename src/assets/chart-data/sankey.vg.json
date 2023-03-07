@@ -553,6 +553,7 @@
     },
     {
       "type": "text",
+      "name": "sourceTextMark",
       "from": {
         "data": "nodes"
       },
@@ -576,6 +577,36 @@
           },
           "text": {
             "field": "source.id"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "targetTextMark",
+      "from": {
+        "data": "nodes"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "yc": {
+            "field": "targetyc"
+          },
+          "x": {
+            "signal": "datum.target.x1 > width / 2 ? datum.target.x0 - 5 : datum.target.x1 + 5"
+          },
+          "align": {
+            "signal": "datum.target.x1 > width / 2 ? 'right' : 'left'"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fontWeight": {
+            "value": "normal"
+          },
+          "text": {
+            "field": "target.id"
           }
         }
       }
