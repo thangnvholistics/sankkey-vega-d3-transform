@@ -559,14 +559,14 @@
       "interactive": false,
       "encode": {
         "update": {
-          "x": {
-            "field": "source.x1"
-          },
           "yc": {
             "field": "sourceyc"
           },
+          "x": {
+            "signal": "datum.source.x1 > width / 2 ? datum.source.x0 - 5 : datum.source.x1 + 5"
+          },
           "align": {
-            "value": "left"
+            "signal": "datum.source.x1 > width / 2 ? 'right' : 'left'"
           },
           "baseline": {
             "value": "middle"
