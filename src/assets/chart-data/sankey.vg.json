@@ -540,6 +540,35 @@
           }
         }
       }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "nodes"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "field": "source.x1"
+          },
+          "yc": {
+            "field": "source.y0"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fontWeight": {
+            "value": "normal"
+          },
+          "text": {
+            "field": "source.id"
+          }
+        }
+      }
     }
   ]
 }
