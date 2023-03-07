@@ -391,12 +391,12 @@
           "targetX": {
             "expr": "datum.target.x0"
           },
-          "as": "path123"
+          "as": "path"
         },
         {
           "type": "formula",
           "expr": "datum.width",
-          "as": "strokeWidth"
+          "as": "linkWidth"
         }
       ]
     },
@@ -413,6 +413,16 @@
           "type": "formula",
           "expr": "datum.target",
           "as": "target"
+        },
+        {
+          "type": "formula",
+          "expr": "(datum.source.y0 + datum.source.y1)/2",
+          "as": "sourceyc"
+        },
+        {
+          "type": "formula",
+          "expr": "(datum.target.y0 + datum.target.y1)/2",
+          "as": "targetyc"
         }
       ]
     }
@@ -439,10 +449,10 @@
       "encode": {
         "update": {
           "path": {
-            "field": "path123"
+            "field": "path"
           },
           "strokeWidth": {
-            "field": "strokeWidth"
+            "field": "linkWidth"
           },
           "stroke": [
             {
@@ -553,7 +563,7 @@
             "field": "source.x1"
           },
           "yc": {
-            "field": "source.y0"
+            "field": "sourceyc"
           },
           "align": {
             "value": "left"
